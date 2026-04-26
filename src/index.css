@@ -1,0 +1,138 @@
+/* src/index.css */
+:root {
+  /* High contrast colors for visually impaired */
+  --bg-color: #f8f9fa;
+  --text-color: #1a1a1a;
+  --primary-color: #0d6efd;
+  --primary-hover: #0b5ed7;
+  --card-bg: #ffffff;
+  --focus-ring: 4px solid #ffc107;
+}
+
+[data-theme="high-contrast"] {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --primary-color: #ffff00;
+  --primary-hover: #ffcc00;
+  --card-bg: #1a1a1a;
+  --focus-ring: 4px solid #ffffff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Ensure focus is highly visible for keyboard users */
+*:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 4px solid var(--text-color);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+button {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: var(--text-color);
+  color: var(--card-bg);
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.step-card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--text-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.step-card img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  align-self: center;
+  border: 2px solid var(--text-color);
+}
+
+.step-card h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.step-card p {
+  font-size: 1.2rem;
+}
+
+.speak-btn {
+  align-self: flex-start;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border-color: var(--primary-color);
+}
+
+.speak-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Accessibility hidden class for screen readers only if needed */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
