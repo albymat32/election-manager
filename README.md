@@ -1,26 +1,58 @@
-# Accessible Election Assistant
+# 🗳️ Accessible Election Assistant
 
-## 📌 Chosen Vertical
-**Civic Technology & Digital Accessibility**
-This project falls under the vertical of Civic Tech, focusing specifically on creating inclusive, accessible digital infrastructure. The goal is to ensure that marginalized groups—such as the uneducated, elderly, and specially-abled (visually, hearing, or physically impaired)—can exercise their democratic rights independently without being hindered by complex, text-heavy government portals.
+A production-grade, mobile-first web application designed to guide voters—especially those with limited literacy or disabilities—through the election process.
 
-## 🧠 Approach and Logic
-The core philosophy behind this application is **Accessibility-First Design**. 
+## 🚀 Key Features
 
-1. **Inclusivity over Complexity**: Instead of building a complex portal with deep navigation, the app presents a linear, easy-to-follow flow of the election process.
-2. **Audio-Visual Learning**: Acknowledging that many citizens may not be literate or may have poor vision, the app relies heavily on high-contrast visual illustrations and Text-to-Speech capabilities rather than just written text.
-3. **Zero-Friction Technology**: By utilizing built-in browser APIs (like the Web Speech API for Text-to-Speech), the application remains incredibly lightweight and fast. It avoids heavy external TTS libraries that would increase load times for users on slow mobile networks.
-4. **Cloud-Native Deployment**: The app is containerized using Docker and Nginx, making it instantly deployable, scalable, and secure on modern serverless platforms like Google Cloud Run.
+- **Inclusive Design**: Multi-language support (English/Hindi) with integrated Text-to-Speech (TTS) for non-literate users.
+- **Voter ID Verification**: Secure, regex-based validation for voter registration status.
+- **Practice Voting**: A simulated voting module to familiarize users with electronic voting machines (EVM).
+- **Booth Finder**: Simulated Google Maps integration to help users find their nearest polling station.
+- **A11y Optimized**: High-contrast mode, ARIA labels, and keyboard-friendly navigation.
+- **Premium UX**: Glassmorphism aesthetic with smooth animations and Android-optimized tap targets.
 
-## ⚙️ How the Solution Works
-- **Frontend Architecture**: The application is built as a Single Page Application (SPA) using React and Vite. It heavily utilizes vanilla CSS variables to manage visual themes seamlessly.
-- **State Management**: The app maintains simple state for user preferences: Language selection (`en` or `hi`), High-Contrast mode toggle, and Audio playing status.
-- **Text-to-Speech Engine**: Each step in the election process has a dedicated audio button. When clicked, it triggers the browser's native `SpeechSynthesis` API, reading the instructions aloud in the selected language.
-- **Deployment Pipeline**: A multi-stage `Dockerfile` is used. Stage 1 utilizes `node:20-alpine` to compile the React code into static assets. Stage 2 uses an `nginx:alpine` image to serve those assets. A custom `nginx.conf` ensures SPA routing is handled correctly and exposes port `8080` (a requirement for Google Cloud Run).
+## 🛠️ Tech Stack
 
-## 🤔 Assumptions Made
-While building this solution, the following assumptions were made:
-1. **Device Capability**: It is assumed that the user (or the volunteer assisting them) has access to a smartphone, tablet, or PC with a modern web browser that supports the native Web Speech API for audio generation.
-2. **Connectivity**: While the app is extremely lightweight, it assumes a basic level of internet connectivity is available to initially load the page and its assets.
-3. **Language Scope**: English and Hindi are used as the proof-of-concept languages. It is assumed that the localized translation dictionary structure implemented in the code can be easily scaled by translators to include other regional dialects.
-4. **Deployment Environment**: It is assumed the target deployment environment is Google Cloud Run, hence the explicit Nginx configuration to listen on port 8080 and the inclusion of a `.dockerignore` file to ensure clean, system-agnostic builds.
+- **Core**: React 18, Vite
+- **Styling**: Vanilla CSS (Modern CSS variables, Flexbox/Grid)
+- **Icons**: Lucide React
+- **Services**: Web Speech API (TTS), Simulated Google Maps/Places API
+- **Testing**: Vitest, React Testing Library
+
+## 🛡️ Security & Reliability
+
+- **Input Sanitization**: All user inputs are trimmed and validated via strict regular expressions to prevent injection.
+- **State Integrity**: React-controlled components ensure UI state remains consistent with internal logic.
+- **Error Boundaries**: Robust error handling for async operations and browser API failures.
+- **Aria-Live Regions**: Provides real-time feedback to screen readers for status changes (success/error).
+
+## 🌍 Google Services Integration
+
+1.  **Web Speech API**: Leverages the native Chrome/Android speech engine for high-quality localized voice guidance.
+2.  **Booth Finder (Mock)**: Simulates the integration of Google Maps JavaScript API and Google Places API to provide location-based search functionality for polling booths.
+
+## 📦 Setup & Installation
+
+1.  **Clone the repository**
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Run in development**:
+    ```bash
+    npm run dev
+    ```
+4.  **Run tests**:
+    ```bash
+    npm test
+    ```
+
+## 🧪 Testing Approach
+
+The project uses **Vitest** for unit and integration testing. We focus on:
+- **Validation Logic**: Ensuring edge cases in Voter ID formats are handled.
+- **User Flow**: Verifying the practice voting and search functionality.
+- **Accessibility**: Testing ARIA state transitions and theme toggling.
+
+---
+**Developed with ❤️ for a more inclusive democracy.**
